@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   get 'categories/:id', to: 'categories#show', as: :category
   post 'categories', to: 'categories#create'
   delete 'categories/:id', to: 'categories#destroy'
+
+  resources :categories, except: %i[edit upate] do
+    resources :bookmarks, only: [:new, :create]
+  end
 end
